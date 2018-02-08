@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Monica Ciuchetti
+ * @author Alessandro Russo
  */
 public class ServerConnessioneTCP {
 
