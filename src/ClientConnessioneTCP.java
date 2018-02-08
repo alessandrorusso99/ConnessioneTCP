@@ -12,7 +12,7 @@ import java.net.ConnectException;
 
 /**
  *
- * @author Monica Ciuchetti
+ * @author Alessandro Russo
  */
 public class ClientConnessioneTCP {
     /**
