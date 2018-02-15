@@ -29,13 +29,13 @@ public class connessioneClient {
     void connessioneClient() {
         connection = null;
         //nome o IP del server
-        serverAddress = "localhost";
-        //porta del server in ascolto
-        port = 2000;
     }
 
-    void napoli() {
+    void avvioClient(String serverAddress,int port) {
         //apertura della connessione al server sulla porta specificata
+        this.serverAddress=serverAddress;
+        this.port=port;
+        System.out.println("tentativo connessione");
         try {
             InetAddress address = InetAddress.getByName(serverAddress); //traduzione in formato indirizzo per il socket
             connection = new Socket(address, port);
@@ -48,7 +48,9 @@ public class connessioneClient {
             System.err.println(e2);
             e2.printStackTrace();
         }
-//
+    }
+
+    void invioClient() {
         try {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
             String b = "5" + "\n";

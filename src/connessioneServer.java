@@ -20,34 +20,36 @@ public class connessioneServer {
     Socket connection;
     ServerSocket sSocket;
 
-    void connessioneServer() {
-        port = 2000;
+    void connessioneServer() { 
         connection = null;
         sSocket = null;
+        
 
     }
 
     //oggetto ServerSocket necessario per accettare richieste dal client
     //oggetto da usare per realizzare la connessione TCP
-    public void connetti() {
+    void avvioServer(int port) throws IOException {
+        this.port=port;
+        sSocket = new ServerSocket(port);
+        System.out.println("In attesa di connessioni!");
+        while (true) {
+            connection = sSocket.accept();
+            System.out.println("Connessione stabilita su porta: "+sSocket.getLocalPort());
+        }
+    }
+
+    public void ricezioneServer() throws IOException {
         try {
-            sSocket = new ServerSocket(port);
-            System.out.println("In attesa di connessioni!");
-            while (true) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String a = br.readLine();
+            System.out.println("il messaggio inviato dal client è " + a);
 
-                // il server si mette in ascolto sulla porta voluta
-                //si è stabilita la connessione
-                connection = sSocket.accept();
-                System.out.println("Connessione stabilita!");
+            System.out.println("Socket server: " + connection.getLocalSocketAddress());
+            System.out.println("Socket client: " + connection.getRemoteSocketAddress());
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String a = br.readLine();
-                System.out.println("il messaggio inviato dal client è " + a);
-
-                System.out.println("Socket server: " + connection.getLocalSocketAddress());
-                System.out.println("Socket client: " + connection.getRemoteSocketAddress());
-            }// 
-        } catch (IOException e) {
+        }// 
+        catch (IOException e) {
             System.err.println("Errore di I/O!");
         } finally {
             //chiusura della connessione con il client

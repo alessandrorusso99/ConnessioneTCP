@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import static java.lang.System.in;
@@ -23,17 +25,17 @@ public class Avvio {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        connessioneServer s=new connessioneServer();
-        connessioneClient c=new connessioneClient();
-        s.connetti();
-        c.napoli();
-        
-       
-        
-        
-        
-        
+    public static void main(String[] args) throws IOException {
+        BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
+        int port = Integer.parseInt(b.readLine());
+        connessioneServer s = new connessioneServer();
+        connessioneClient c = new connessioneClient();
+        s.avvioServer(port);
+        System.out.println("ciao");
+        c.avvioClient("localhost", port);
+        c.invioClient();
+        s.ricezioneServer();
+
     }
 }
     /*
