@@ -14,7 +14,7 @@ import java.net.Socket;
  *
  * @author root
  */
-public class connessioneServer {
+public class connessioneServer  {
 
     int port;
     Socket connection;

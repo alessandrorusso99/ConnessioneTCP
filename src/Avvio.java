@@ -31,7 +31,6 @@ public class Avvio {
         connessioneServer s = new connessioneServer();
         connessioneClient c = new connessioneClient();
         s.avvioServer(port);
-        System.out.println("ciao");
         c.avvioClient("localhost", port);
         c.invioClient();
         s.ricezioneServer();
